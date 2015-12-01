@@ -1,3 +1,3 @@
 # ZentriOSWebApp
 
-See https://bitbucket.com/zentri/WiConnectWebApp
+See https://github.com/zentri/WiConnectWebApp
