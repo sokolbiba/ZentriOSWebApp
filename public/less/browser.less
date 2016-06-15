@@ -1,0 +1,411 @@
+/*
+  * Zentri Web App, Zentri JS API Library & Zentri JS Build System
+  *
+  * Copyright (C) 2016, Zentri
+  * All Rights Reserved.
+  *
+  * The Zentri Web App, Zentri JavaScript API and Zentri JS build system
+  * are provided by Zentri. The combined source code, and all derivatives, are licensed
+  * by Zentri SOLELY for use with devices manufactured by Zentri, or hardware
+  * authorized by Zentri.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR 'AS IS' AND ANY EXPRESS OR IMPLIED
+  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  * OF SUCH DAMAGE.
+*/
+
+@import "mixins.less";
+@import "variables.less";
+
+.browser {
+
+  h1 {
+    margin-bottom: 32px;
+  }
+
+  h3 {
+    font-weight: 400;
+    margin: 8px 0;
+  }
+
+  .path {
+    position: absolute;
+    top: 76px;
+    color: #ccc;
+  }
+
+  #dropbox {
+    position: relative;
+    height: 120px;
+    padding-top: 12px;
+    border: 5px dashed #eee;
+    color: #ccc;
+    font-size:24px;
+    line-height:24px;
+    text-align: center;
+    .transition(color 0.3s, border-color 0.3s;);
+
+    &.over{
+      border-color: @blue;
+      color: @blue;
+    }
+
+    &.dropped {
+      border-color: @icon-green;
+      color: @icon-green;
+      padding-top: 40px;
+    }
+
+    span {
+      font-size: 16px;
+      line-height: 32px;
+    }
+
+    .add-btn {
+      position: relative;
+      display: block;
+      background: #eee;
+      color: @medium;
+      text-align: center;
+      max-width: 160px;
+      margin: 0 auto;
+      padding: 0 8px;
+      height: 24px;
+      font-size: 11pt;
+      line-height: 24px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      .box-shadow(1px 2px 1px rgba(0,0,0,0.125));
+      .transition(box-shadow 0.3s);
+
+      &:hover {
+        .box-shadow(1px 2px 1px rgba(0,0,0,0.25));
+      }
+
+      input[type="file"] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        opacity: 0 !important;
+        cursor: pointer;
+      }
+    }
+
+    .overwrite {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      h4 {
+        display: inline-block;
+        margin-top: 12px;
+        font-size: 10pt;
+        color: #bbb;
+      }
+
+      .zentrios-cbx {
+        top: 4px;
+        right: 8px;
+        margin: 0 4px;
+      }
+    }
+  }
+
+  .file-queue, .file-system {
+    margin-top: 24px;
+
+    .file, .folder {
+      position: relative;
+      border-bottom: 1px dashed #eee;
+      height: 32px;
+      line-height: 32px;
+      transition: background 0.175s;
+
+      &:hover {
+        background: @lighter;
+      }
+
+      .name, .size, .status, .icon, .remove {
+        display: inline-block;
+        position: absolute;
+      }
+
+      .name {
+        padding-left: 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        color: @dark;
+      }
+
+      .size {
+        right: 40px;
+        text-align: right;
+        font-size: 10pt;
+        color: #bbb;
+      }
+
+      .status, .icon {
+        top: 4px;
+        width: 24px;
+        height: 24px;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .fade {
+        display: none;
+      }
+    }
+
+    .folder {
+      cursor: pointer;
+
+      &.dir {
+        cursor: default;
+        border: none;
+        color: @medium;
+      }
+
+      .name {
+        padding-left: 36px;
+      }
+
+      .icon {
+        .fldr('428bca');
+        left: 6px;
+        opacity: 0.85;
+        .transition(opacity 0.3s);
+
+        .add {
+          .cross('FFFFFF');
+          width: 11px;
+          height: 11px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          position: absolute;
+          top: 7px;
+          left: 6px;
+        }
+      }
+
+      &:hover {
+        .name {
+          text-decoration: underline;
+        }
+
+        .icon {
+          opacity: 1;
+        }
+
+      }
+    }
+
+    .file {
+
+      .status {
+        right: 8px;
+      }
+
+      &.fs-file {
+
+        a {
+          color: @blue;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.deletable {
+
+        .status {
+
+          .bin();
+          opacity: 0.4;
+          cursor: pointer;
+          .transition(opacity 0.3s);
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.uploaded {
+
+        .status {
+          .tick('00bb33');
+        }
+      }
+
+      &.uploading {
+
+        .status {
+          .uploading();
+        }
+      }
+
+      &.failed {
+
+        .status {
+          .transform(rotate(45deg));
+          .cross('FF0000');
+        }
+      }
+    }
+  }
+
+  .file-queue {
+    display: none;
+  }
+
+  .fileContext {
+    position: fixed;
+    background: #fff;
+    .box-shadow(0 1px 2px rgba(0,0,0,.25));
+    z-index: 10;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        cursor: pointer;
+        padding: 4px 16px;
+        color: @dark;
+        font-size: 10pt;
+        transition: background 0.175s;
+
+        &.hr::after {
+          content: '';
+          position: absolute;
+          display: block;
+          left: 0;
+          width: 100%;
+          margin: 4px 0;
+          border-bottom: 1px dotted #ccc;
+        }
+
+        &:hover {
+          background: #f2f2f2;
+        }
+
+        &.disabled {
+          color: @medium;
+
+          &:hover {
+            background: #fff;
+            cursor: default;
+          }
+        }
+
+        a {
+          color: @dark;
+          text-decoration: none;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 768px){
+  .browser {
+
+    .path {
+      top: 60px;
+      right: 16px;
+    }
+
+    .file-queue, .file-system {
+      margin-top: 32px;
+
+      .file, .folder {
+
+        .name {
+          width: ~"calc(100% - 64px)";
+        }
+
+        .size {
+          right: 24px;
+        }
+
+        .status {
+          right: 0px;
+        }
+
+        .fade {
+          .gradient-horizontal(rgba(255,255,255,0), rgba(255,255,255,1));
+          position: absolute;
+          top: 0;
+          right: 64px;
+          display: block;
+          width: 32px;
+          height: 30px;
+          z-index: 1;
+          white-space: nowrap;
+        }
+
+        &:hover {
+
+          .fade {
+            .gradient-horizontal(rgba(248,248,248,0), rgba(248,248,248,1));
+          }
+        }
+      }
+
+      .file {
+
+        .name {
+          padding: 0;
+        }
+      }
+
+      .folder {
+
+        .icon {
+          left: 0;
+        }
+
+        .name {
+          padding-left: 28px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 480px){
+  .browser {
+
+    .path {
+      top: 56px;
+    }
+
+    #dropbox {
+
+      .add-btn {
+        max-width: 50%;
+      }
+
+      .overwrite {
+        right: -8px;
+        bottom: -35px;
+      }
+    }
+  }
+}

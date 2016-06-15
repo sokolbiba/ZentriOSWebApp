@@ -1,0 +1,17 @@
+/public/vendor/*/
+/node_modules/
+/out/index.html
+/out/webapp/version.json
+/out/webapp/wiconnect.js
+/out/webapp/wiconnect.js.gz
+/out/webapp/wiconnect.css
+/out/webapp/wiconnect.css.gz
+/out/webapp/index.html
+/out/webapp/unauthorized.html
+/out/webapp/recovery.html
+/out/webapp/*.map
+/out/version.json
+/public/views/js/*.min.*
+/public/views/less/*.js
+/public/views/css/
+aws.json

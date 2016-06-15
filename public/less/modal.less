@@ -1,0 +1,125 @@
+/*
+  * Zentri Web App, Zentri JS API Library & Zentri JS Build System
+  *
+  * Copyright (C) 2016, Zentri
+  * All Rights Reserved.
+  *
+  * The Zentri Web App, Zentri JavaScript API and Zentri JS build system
+  * are provided by Zentri. The combined source code, and all derivatives, are licensed
+  * by Zentri SOLELY for use with devices manufactured by Zentri, or hardware
+  * authorized by Zentri.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR 'AS IS' AND ANY EXPRESS OR IMPLIED
+  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  * OF SUCH DAMAGE.
+*/
+
+@import "mixins.less";
+@import "variables.less";
+
+#system-modal {
+  position: fixed;
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(125,125,125,0.5);
+  }
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    bottom: auto;
+    margin: 0 auto;
+    width: 66%;
+    background: none;
+    .transform(translateY(-50%));
+
+    .content {
+
+      >div {
+        height: 48px;
+        margin-top: 48px;
+
+        &.progress-bar {
+          width: 50%;
+          margin: 32px auto 8px auto;
+          height: 4px;
+          background: @light;
+
+          .progress {
+            width: 0;
+            background: @blue;
+            height: 4px;
+            border-radius: 1px;
+            .transition(width 1.5s);
+          }
+        }
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        margin: 16px;
+        width: 32px;
+        height: 32px;
+        .cross();
+        .transform(rotate(45deg));
+        background-size: contain;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.175s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 768px){
+  #system-modal {
+
+    .modal {
+
+      .content {
+
+        &>div {
+          height: auto;
+          margin: 24px 0 0 0;
+        }
+
+        .modal-close {
+          margin: 0;
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+}
+

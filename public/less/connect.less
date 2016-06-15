@@ -1,0 +1,230 @@
+/*
+  * Zentri Web App, Zentri JS API Library & Zentri JS Build System
+  *
+  * Copyright (C) 2016, Zentri
+  * All Rights Reserved.
+  *
+  * The Zentri Web App, Zentri JavaScript API and Zentri JS build system
+  * are provided by Zentri. The combined source code, and all derivatives, are licensed
+  * by Zentri SOLELY for use with devices manufactured by Zentri, or hardware
+  * authorized by Zentri.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR 'AS IS' AND ANY EXPRESS OR IMPLIED
+  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  * OF SUCH DAMAGE.
+*/
+
+@import "mixins.less";
+@import "variables.less";
+
+.connect {
+
+  h1{
+    margin-bottom: 0;
+  }
+
+  .btn {
+
+    &.scan, &.manual {
+      position: absolute;
+      top: 32px;
+      width: 100px;
+
+      &.scanning {
+        display: none;
+      }
+    }
+
+    &.scan {
+      right: 32px;
+    }
+
+    &.manual {
+      right: 148px;
+    }
+  }
+
+  .wifi-scan{
+
+    &.status {
+      display: none;
+      width: 100%;
+      left: 0;
+      margin-top: 32px;
+      text-align: center;
+      color: @dark;
+
+      &.scanning{
+        display: block;
+      }
+    }
+  }
+
+  .networks {
+    display: none;
+    margin-top: 32px;
+
+    .network {
+      position: relative;
+      height: 48px;
+      border: 1px solid #eee;
+      border-bottom-style: none;
+      cursor: pointer;
+      transition: all 0.175s;
+
+      div {
+        display: inline-block;
+        line-height: 48px;
+      }
+
+      &:last-child {
+        border-bottom-style: solid;
+      }
+
+      &:hover {
+        background: #eee;
+      }
+
+      .ssid {
+        width: 66%;
+        padding-left: 16px;
+      }
+
+      .channel {
+        position: absolute;
+        left: 66%;
+        bottom: 4px;
+        line-height: 8pt;
+        color: #ccc;
+        font-size: 8pt;
+      }
+
+      .security {
+        font-size: 10pt;
+      }
+
+      .signal {
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        height: 24px;
+        width: 32px;
+      }
+    }
+  }
+
+  .no-results {
+    display: none;
+    padding: 80px 0 128px 0;
+    text-align: center;
+    color: #999;
+  }
+
+  .connect-modal {
+
+    h5 {
+      display: inline-block;
+    }
+
+    .security-type {
+
+      h4 {
+        display: block;
+      }
+    }
+
+    .right {
+      float: right;
+      height: 0;
+    }
+
+    .secondary {
+      margin: 0;
+
+      &.small label {
+        left: 6px;
+      }
+    }
+  }
+}
+
+
+
+@media(max-width: 768px){
+  .connect {
+
+    .btn {
+
+      &.scan, &.manual {
+        position: relative;
+        top: 0;
+        right: auto;
+        margin-top: 32px;
+        width: 50%;
+      }
+    }
+
+    .wifi-scan {
+      top: 50vh;
+
+      &.status {
+        position: absolute;
+        margin-top: 16px;
+      }
+    }
+
+    .networks {
+      position: relative;
+      margin-top: 18px;
+
+      .network {
+
+        .ssid {
+          width: 66%;
+          word-wrap: break-word;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media(max-width: 480px){
+  .connect {
+
+    .networks {
+
+      .network {
+
+        .ssid {
+          position: absolute;
+          top: 14px;
+          width: inherit;
+          padding-left: 8px;
+        }
+
+        .channel {
+          left: 8px;
+        }
+
+        .security {
+          position: absolute;
+          bottom: 2px;
+          line-height: normal;
+          right: 56px;
+          font-size: 8pt;
+          color: #ccc;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+/*
+  * Zentri Web App, Zentri JS API Library & Zentri JS Build System
+  *
+  * Copyright (C) 2016, Zentri
+  * All Rights Reserved.
+  *
+  * The Zentri Web App, Zentri JavaScript API and Zentri JS build system
+  * are provided by Zentri. The combined source code, and all derivatives, are licensed
+  * by Zentri SOLELY for use with devices manufactured by Zentri, or hardware
+  * authorized by Zentri.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR 'AS IS' AND ANY EXPRESS OR IMPLIED
+  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  * OF SUCH DAMAGE.
+*/
+
+@import "mixins.less";
+@import "variables.less";
+
+.wifi-logo {
+  display: none;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin: 0;
+  .transform(rotate(-45deg));
+
+  &.scanning {
+    display: inline-block;
+  }
+
+  .wifi-bar {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 5px;
+    border-color: @wifi;
+    border-style: solid;
+    border-width: 1em 1em 0 0;
+    border-radius: 0 100% 0 0;
+    opacity: 0;
+    .animation(wifi 1.5s infinite);
+
+    &:nth-child(1) {
+      width: 7em;
+      height: 7em;
+      .animation-delay(500ms);
+    }
+
+    &:nth-child(2) {
+      width: 5em;
+      height: 5em;
+      .animation-delay(250ms);
+    }
+
+    &:nth-child(3) {
+      width: 3em;
+      height: 3em;
+    }
+
+    &:nth-child(4) {
+      width: 1em;
+      height: 1em;
+      opacity: 1;
+      .animation(none);
+    }
+  }
+}
+
+@keyframes wifi {
+  0% {opacity: 1; }
+  5% {opactiy: 1; }
+  6% {opactiy: 0.1; }
+  100% {opactiy: 0.1; }
+}
+
+@-webkit-keyframes wifi {
+  0% {opacity: 1; }
+  5% {opactiy: 1; }
+  6% {opactiy: 0.1; }
+  100% {opactiy: 0.1; }
+}
+
+@-moz-keyframes wifi {
+  0% {opacity: 1; }
+  5% {opactiy: 1; }
+  6% {opactiy: 0.1; }
+  100% {opactiy: 0.1; }
+}
+
+@-o-keyframes wifi {
+  0% {opacity: 1; }
+  5% {opactiy: 1; }
+  6% {opactiy: 0.1; }
+  100% {opactiy: 0.1; }
+}
