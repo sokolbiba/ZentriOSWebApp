@@ -365,7 +365,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('no-jade', function() {
+  grunt.registerTask('no-pug', function() {
     if(!grunt.file.isDir('public/html/')) {
       grunt.log.writeln('Created HTML directory.');
       grunt.file.mkdir('public/html/');

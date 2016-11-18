@@ -47,7 +47,7 @@ Edit `config.json` to specify:
   - `port`: port for local development server (the default grunt server runs on 5002).
   - `device`: address (e.g. `12.34.56.78` or `device.local`) of the device to communicate with.
 
-The ZentriOS WebApp has been primarily developed using [Jade templating](http://jade-lang.com/) and [LESS CSS pre-processing language](http://lesscss.org/)
+The ZentriOS WebApp has been primarily developed using [Pug templating (formerly known as Jade)](https://pugjs.org/language/attributes.html) and [LESS CSS pre-processing language](http://lesscss.org/)
 
 When developing on a local server and communicating with a remote device, set the `device` IP address in config.json. _N.B. To successfully communicate with a remote device, the ZentriOS variable `http.server.cors_origin` needs to be set appropriately.
 
@@ -61,12 +61,12 @@ Will run a local nodejs server on port 5002 for testing
 
 Will start a task that listens for file changes, and compile/compress HTML, CSS and JS
 
-#### `no-jade`
+#### `no-pug`
 
-If you are unfamiliar with Jade and wish to write traditional HTML run the following grunt task:
+If you are unfamiliar with Pug and wish to write traditional HTML run the following grunt task:
 
 ```
-grunt no-jade
+grunt no-pug
 ```
 
 This will create the files `public/html/index.html` and `public/html/unauthorized.html` for development.
